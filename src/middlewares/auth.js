@@ -1,7 +1,7 @@
 import { verifyJWT } from '../auth';
 
 const isAuthenticated = (req, res, next) => {
-  if (!req.headers.Authentication) {
+  if (!req.headers.jwt) {
     return res.status(400).json({
       response: 'Not OK',
       message: 'Unauthorized',

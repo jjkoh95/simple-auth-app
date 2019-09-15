@@ -1,0 +1,179 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Simple auth app",
+    "description": "Simple auth app"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+      "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Test"
+        ],
+        "summary": "Welcome message",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Welcome"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "credentials",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "jjkoh95@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "hello"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Welcome"
+                },
+                "token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/createuser": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "New Account",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "jjkoh95@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "hello"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "JJKoh"
+                }
+              }
+            }
+          },
+          {
+            "in": "header",
+            "name": "jwt",
+            "description": "jwt",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Welcome"
+                },
+                "token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/getusers": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "OK"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Welcome"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+
+import swaggerDoc from './swaggerDoc';
 import auth from './middlewares/auth';
 import user from './controllers/user';
 
@@ -7,6 +9,9 @@ const app = express();
 
 // middleware
 app.use(bodyParser.json());
+
+// swagger
+swaggerDoc(app);
 
 app.set('port', process.env.PORT || 8080);
 app.set('env', process.env.ENV || 'development');
