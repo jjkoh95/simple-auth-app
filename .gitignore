@@ -1,1 +1,6 @@
+# Credentials
 firebase-service-account.json
+
+# Deployment environments
+app.yaml
+.gcloudignore

@@ -1,4 +1,5 @@
 import firestore from '../firestore';
+import { generateJWT } from '../auth';
 
 const login = async (req, res) => {
   if (!req.body.email || !req.body.password) {
@@ -10,14 +11,16 @@ const login = async (req, res) => {
   try {
     const isMatched = await firestore.loginUser(req.body.email, req.body.password);
     if (isMatched) {
+      const jwt = generateJWT(req.body.email);
       return res.status(200).json({
         response: 'OK',
         message: 'Successfully logged in',
+        token: jwt,
       });
     }
-    return res.status(404).json({
+    return res.status(400).json({
       response: 'Not OK',
-      message: 'Invalid password',
+      message: 'Invalid login details',
     });
   } catch (err) {
     return res.status(400).json({
@@ -25,10 +28,6 @@ const login = async (req, res) => {
       message: 'Error logging in',
     });
   }
-};
-
-const logout = (req, res) => {
-
 };
 
 const createUser = async (req, res) => {
@@ -52,8 +51,6 @@ const createUser = async (req, res) => {
   }
 };
 
-const deleteUser = (req, res) => {};
-
 const getUsers = async (req, res) => {
   try {
     const users = await firestore.getAllUsers();
@@ -71,8 +68,6 @@ const getUsers = async (req, res) => {
 
 export default {
   login,
-  logout,
   createUser,
-  deleteUser,
   getUsers,
 };

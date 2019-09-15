@@ -2,8 +2,6 @@ import admin from 'firebase-admin';
 import bcrypt from 'bcrypt';
 import serviceAccount from '../../firebase-service-account.json';
 
-// const serviceAccount = require('path/to/serviceAccountKey.json');
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
