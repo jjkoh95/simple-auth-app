@@ -139,9 +139,6 @@
                 "message": {
                   "type": "string",
                   "example": "Welcome"
-                },
-                "token": {
-                  "type": "string"
                 }
               }
             }
@@ -166,8 +163,7 @@
                   "example": "OK"
                 },
                 "message": {
-                  "type": "string",
-                  "example": "Welcome"
+                  "type": "object"
                 }
               }
             }
