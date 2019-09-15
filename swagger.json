@@ -93,7 +93,7 @@
         "tags": [
           "Auth"
         ],
-        "summary": "Login",
+        "summary": "Create new user (required login)",
         "parameters": [
           {
             "in": "body",
@@ -151,7 +151,7 @@
         "tags": [
           "Auth"
         ],
-        "summary": "Login",
+        "summary": "get all users",
         "responses": {
           "200": {
             "description": "OK",

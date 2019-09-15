@@ -8,6 +8,11 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
+/**
+ * getUser
+ * @param {string} email
+ * @return {object} user document (firebase)
+ */
 const getUser = async (email) => {
   const users = await db.collection('users').where('email', '==', email).get();
   if (users.empty) return undefined;
@@ -18,6 +23,10 @@ const getUser = async (email) => {
   return user;
 };
 
+/**
+ * getAllUsers
+ * @return {Array<object>} Array of user objects (firebase)
+ */
 const getAllUsers = async () => {
   const users = await db.collection('users').get();
   const allUsers = [];
@@ -27,6 +36,12 @@ const getAllUsers = async () => {
   return allUsers;
 };
 
+/**
+ * createUser
+ * @param {string} email
+ * @param {string} password
+ * @param {string} name
+ */
 const createUser = async (email, password, name) => {
   const user = await getUser(email);
   if (user) throw new Error('User account already exists');
@@ -39,6 +54,12 @@ const createUser = async (email, password, name) => {
     .set({ name, email, hashedPassword });
 };
 
+/**
+ * loginUser
+ * @param {string} email
+ * @param {string} password
+ * @return {boolean} if password matches
+ */
 const loginUser = async (email, password) => {
   const user = await getUser(email);
   return bcrypt.compareSync(password, user.hashedPassword);
