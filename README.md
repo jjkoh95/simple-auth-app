@@ -9,7 +9,7 @@ To use this, simply create a service account credential in firebase (firebase-se
 ### `yarn install`
 To install necessary package
 
-### `yarn start`
+### `yarn dev`
 To run the app in development environment, this should run on http://localhost:8080
 
 ### `yarn build`
