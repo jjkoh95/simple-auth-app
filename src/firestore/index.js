@@ -46,12 +46,13 @@ const createUser = async (email, password, name) => {
   const user = await getUser(email);
   if (user) throw new Error('User account already exists');
 
-  const salt = bcrypt.genSaltSync(10);
-  const hashedPassword = bcrypt.hashSync(password, salt);
-
-  db.collection('users')
-    .doc(email)
-    .set({ name, email, hashedPassword });
+  bcrypt.genSalt(10, (salt) => {
+    bcrypt.hash(password, salt, (hashedPassword) => {
+      db.collection('users')
+        .doc(email)
+        .set({ name, email, hashedPassword });
+    });
+  });
 };
 
 /**
@@ -62,7 +63,11 @@ const createUser = async (email, password, name) => {
  */
 const loginUser = async (email, password) => {
   const user = await getUser(email);
-  return bcrypt.compareSync(password, user.hashedPassword);
+  let res = false;
+  bcrypt.compare(password, user.hashedPassword, (val) => {
+    res = val;
+  });
+  return res;
 };
 
 export default {
